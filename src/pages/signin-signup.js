@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CreateAnAccount from "./createaccount";
+import CreateAnAccount from "./createcustomer";
 import { Link } from 'react-router-dom';
 
 
