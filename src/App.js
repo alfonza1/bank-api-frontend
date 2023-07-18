@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Deposit from './components/Deposit'; // Make sure the path is correct
 import Withdrawal from './components/Withdrawal';
+import P2P from './P2P';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -38,6 +39,8 @@ function App() {
         <p>Customer ID: {account.customer_id}</p>
         <Deposit accountId={account.id} />
         <Withdrawal accountId={account.id} />
+      <P2P />
+    
       </header>
     </div>
   );
