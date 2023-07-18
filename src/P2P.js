@@ -36,11 +36,10 @@ function P2P() {
     return (
       <div>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
          
           <form onSubmit={handleSubmit}>
             <label>
-              Source Account ID:
+              P2P Source Account ID:
               <input type="number" name="sourceAccountId" value={transfer.sourceAccountId} onChange={handleInputChange} required />
             </label>
             <label>
