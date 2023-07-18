@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import P2P from './P2P';
+import Deposit from './components/Deposit';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,6 +12,7 @@ root.render(
     <div>
       <App /> 
       <P2P />
+    
     </div>
   </React.StrictMode>
 );
