@@ -2,36 +2,41 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const CreateCustomer = ({ setAccountId }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [address, setAddress] = useState([{ street: '', city: '', state: '', zip: '' }]);
+  const [first_Name, setFirstName] = useState('');
+  const [last_Name, setLastName] = useState('');
+  const [address, setAddress] = useState({
+    street_Number: "",
+    street_Name: "",
+    city: "",
+    state: "",
+    zip: ""
+  });
   const [accountType, setAccountType] = useState('');
   const [nickname, setNickname] = useState('');
-  const [rewards, setRewards] = useState('');
-  const [balance, setBalance] = useState('');
 
   const handleSubmit = async event => {
     event.preventDefault();
-
+  
     const customerData = {
-      first_name: firstName,
-      last_name: lastName,
-      address
+      first_name: first_Name,
+      last_name: last_Name,
+      address: [address]
     };
-
+  
     try {
       const customerResponse = await axios.post('http://localhost:8080/customers', customerData);
-
-      if (customerResponse.data && customerResponse.data.id) {
+  
+      if (customerResponse.data && customerResponse.data.data && customerResponse.data.data.id) {
+        const customerId = customerResponse.data.data.id;
+  
         const accountData = {
           type: accountType,
           nickname,
-          rewards,
-          balance
+          rewards: 0,
+          balance: 0
         };
-
-        const accountResponse = await axios.post(`http://localhost:8080/customers/${customerResponse.data.id}/accounts`, accountData);
-        setAccountId(accountResponse.data.id);  // Setting the created account ID
+  
+        await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
       } else {
         console.error('Failed to get customer ID');
       }
@@ -39,6 +44,7 @@ const CreateCustomer = ({ setAccountId }) => {
       console.error('Failed to create customer or account', error);
     }
   };
+  
 
   return (
     <div>
@@ -47,44 +53,41 @@ const CreateCustomer = ({ setAccountId }) => {
       <form onSubmit={handleSubmit}>
         <label>
           First Name:
-          <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} />
+          <input type="text" value={first_Name} onChange={e => setFirstName(e.target.value)} />
         </label>
         <label>
           Last Name:
-          <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} />
+          <input type="text" value={last_Name} onChange={e => setLastName(e.target.value)} />
         </label>
         <label>
-  Street:
-  <input type="text" value={address.street} onChange={e => setAddress({...address, street: e.target.value})} />
-</label>
-<label>
-  City:
-  <input type="text" value={address.city} onChange={e => setAddress({...address, city: e.target.value})} />
-</label>
-<label>
-  State:
-  <input type="text" value={address.state} onChange={e => setAddress({...address, state: e.target.value})} />
-</label>
-<label>
-  Zip:
-  <input type="text" value={address.zip} onChange={e => setAddress({...address, zip: e.target.value})} />
-</label>
+          Street Number:
+          <input type="text" value={address.street_Number} onChange={e => setAddress({...address, street_Number: e.target.value})} />
+        </label>
+        <label>
+          Street Name:
+          <input type="text" value={address.street_Name} onChange={e => setAddress({...address, street_Name: e.target.value})} />
+        </label>
+        <label>
+          City:
+          <input type="text" value={address.city} onChange={e => setAddress({...address, city: e.target.value})} />
+        </label>
+        <label>
+          State:
+          <input type="text" value={address.state} onChange={e => setAddress({...address, state: e.target.value})} />
+        </label>
+        <label>
+          Zip:
+          <input type="text" value={address.zip} onChange={e => setAddress({...address, zip: e.target.value})} />
+        </label>
         <label>
           Account Type:
           <input type="text" value={accountType} onChange={e => setAccountType(e.target.value)} />
         </label>
         <label>
-          Nickname: 
+          Nickname:
           <input type="text" value={nickname} onChange={e => setNickname(e.target.value)} />
         </label>
-        <label>
-          Rewards: 
-          <input type="text" value={rewards} onChange={e => setRewards(e.target.value)} />
-        </label>
-        <label>
-          Balance: 
-          <input type="text" value={balance} onChange={e => setBalance(e.target.value)} />
-        </label>
+        
         <button type="submit">Meet the future of banking</button>
       </form>
     </div>
