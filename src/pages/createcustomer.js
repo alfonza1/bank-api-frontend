@@ -27,7 +27,6 @@ const CreateCustomer = ({ setAccountId }) => {
     };
   
     try {
-
       const customerResponse = await axios.post('http://localhost:8080/customers', customerData);
   
       if (customerResponse.data && customerResponse.data.data && customerResponse.data.data.id) {
@@ -40,7 +39,12 @@ const CreateCustomer = ({ setAccountId }) => {
           balance: 0
         };
   
-        await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
+        const accountResponse = await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
+        if (accountResponse.data && accountResponse.data.data && accountResponse.data.data.id) {
+          setAccountId(accountResponse.data.data.id); // Set the account ID in the parent component
+        } else {
+          console.error("Failed to create account");
+        }
       } else {
         console.error("Failed to create customer");
       }
@@ -91,8 +95,9 @@ const CreateCustomer = ({ setAccountId }) => {
           Nickname:
           <input type="text" value={nickname} onChange={e => setNickname(e.target.value)} />
         </label>
-        
+        <Link to="/accountinfo">
         <button type="submit">Meet the future of banking</button>
+        </Link>
       </form>
     </div>
   );

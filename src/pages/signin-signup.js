@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateAnAccount from "./createcustomer";
 import { Link } from 'react-router-dom';
+import '../styles/frontpage.css';
 
 
 const SigninSignUp = () => {
@@ -12,12 +13,12 @@ const SigninSignUp = () => {
     };
 
     return (
-        <div>
+        <div className="welcome">
             <h1>Welcome to Gradient Bank&trade;</h1>
             <h2>Get started with the #1 bank in the world today!</h2>
-            <Link to="/createcustomer">
-        <button type="button" className="btn btn-secondary">Sign up</button>
-      </Link>
+            <Link to="/createaccount">
+                <button type="button" className="btn btn-secondary">Sign up</button>
+            </Link>
             {/* <a href="/createaccount.js">
             <button type="button" className="btn btn-secondary">Sign in</button>
             </a> <a href="/createaccount.js">
