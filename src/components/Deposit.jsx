@@ -11,8 +11,8 @@ const Deposit = ({ accountId }) => {
         event.preventDefault();
 
         // Check if payeeId or amount are not set or empty
-        if(!payeeId || !amount) {
-            alert("Payee ID and Amount cannot be empty");
+        if(!amount) {
+            alert("Amount cannot be empty");
             return;
         }
 
@@ -41,9 +41,9 @@ const Deposit = ({ accountId }) => {
             <option value="SAVINGS">SAVINGS</option>
             {/* More options as per your enum */}
           </select>
-
+{/* 
           <label>Payee ID</label>
-          <input type="number" value={payeeId} onChange={e => setPayeeId(e.target.value)} />
+          <input type="number" value={payeeId} onChange={e => setPayeeId(e.target.value)} /> */}
 
           <label>Medium</label>
           <select value={medium} onChange={e => setMedium(e.target.value)}>

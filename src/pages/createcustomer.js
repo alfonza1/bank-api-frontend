@@ -3,49 +3,44 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const CreateCustomer = ({ setAccountId }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState([
-    {
-      street_Number: "",
-      street_Name: "",
-      city: "",
-      state: "",
-      zip: "",
-    },
-  ]);
-  const [accountType, setAccountType] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [rewards, setRewards] = useState("");
-  const [balance, setBalance] = useState("");
+
+  const [first_Name, setFirstName] = useState('');
+  const [last_Name, setLastName] = useState('');
+  const [address, setAddress] = useState({
+    street_Number: "",
+    street_Name: "",
+    city: "",
+    state: "",
+    zip: ""
+  });
+  const [accountType, setAccountType] = useState('');
+  const [nickname, setNickname] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const customerData = {
-      first_name: firstName,
-      last_name: lastName,
-      address,
+
+      first_name: first_Name,
+      last_name: last_Name,
+      address: [address]
     };
-
+  
     try {
-      const response = await axios.post("http://localhost:8080/customers", customerData);
-      if (response.status === 201) {
-        // Customer created successfully
-        const customerId = response.data.id; // Assuming your backend returns the created customer's ID
-        console.log("Customer created with ID:", customerId);
 
-        // Now you can proceed to create an account or do any other action if needed
-        // For example:
-        // const accountData = {
-        //   type: accountType,
-        //   nickname,
-        //   rewards,
-        //   balance,
-        // };
-        // const accountResponse = await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
-        // setAccountId(accountResponse.data.id);
-
+      const customerResponse = await axios.post('http://localhost:8080/customers', customerData);
+  
+      if (customerResponse.data && customerResponse.data.data && customerResponse.data.data.id) {
+        const customerId = customerResponse.data.data.id;
+  
+        const accountData = {
+          type: accountType,
+          nickname,
+          rewards: 0,
+          balance: 0
+        };
+  
+        await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
       } else {
         console.error("Failed to create customer");
       }
@@ -53,6 +48,7 @@ const CreateCustomer = ({ setAccountId }) => {
       console.error("Error creating customer", error);
     }
   };
+  
 
   return (
     <div>
@@ -61,113 +57,42 @@ const CreateCustomer = ({ setAccountId }) => {
       <form onSubmit={handleSubmit}>
       <label>
           First Name:
-         <input
-           type="text"
-             value={firstName}
-             onChange={(e) => setFirstName(e.target.value)}
-           />
+          <input type="text" value={first_Name} onChange={e => setFirstName(e.target.value)} />
         </label>
-         <label>
-         Last Name:
-          <input
-           type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-         </label>
-        {address.map((addressItem, index) => (
-          <div key={index}>
-            <label>
-              Street Number:
-              <input
-                type="text"
-                value={addressItem.street_Number}
-                onChange={(e) =>
-                  setAddress((prevAddresses) => {
-                    const updatedAddresses = [...prevAddresses];
-                    updatedAddresses[index] = {
-                      ...addressItem,
-                      street_Number: e.target.value,
-                    };
-                    return updatedAddresses;
-                  })
-                }
-              />
-            </label>
-            <label>
-              Street Name:
-              <input
-                type="text"
-                value={addressItem.street_Name}
-                onChange={(e) =>
-                  setAddress((prevAddresses) => {
-                    const updatedAddresses = [...prevAddresses];
-                    updatedAddresses[index] = {
-                      ...addressItem,
-                      street_Name: e.target.value,
-                    };
-                    return updatedAddresses;
-                  })
-                }
-              />
-            </label>
-            <label>
-              City:
-              <input
-                type="text"
-                value={addressItem.city}
-                onChange={(e) =>
-                  setAddress((prevAddresses) => {
-                    const updatedAddresses = [...prevAddresses];
-                    updatedAddresses[index] = {
-                      ...addressItem,
-                      city: e.target.value,
-                    };
-                    return updatedAddresses;
-                  })
-                }
-              />
-            </label>
-            <label>
-              State:
-              <input
-                type="text"
-                value={addressItem.state}
-                onChange={(e) =>
-                  setAddress((prevAddresses) => {
-                    const updatedAddresses = [...prevAddresses];
-                    updatedAddresses[index] = {
-                      ...addressItem,
-                      state: e.target.value,
-                    };
-                    return updatedAddresses;
-                  })
-                }
-              />
-            </label>
-            <label>
-              Zip:
-              <input
-                type="text"
-                value={addressItem.zip}
-                onChange={(e) =>
-                  setAddress((prevAddresses) => {
-                    const updatedAddresses = [...prevAddresses];
-                    updatedAddresses[index] = {
-                      ...addressItem,
-                      zip: e.target.value,
-                    };
-                    return updatedAddresses;
-                  })
-                }
-              />
-            </label>
-          </div>
-        ))}
-
-        <Link to="/createaccount">
-          <button type="submit">Meet the future of banking</button>
-        </Link>
+        <label>
+          Last Name:
+          <input type="text" value={last_Name} onChange={e => setLastName(e.target.value)} />
+        </label>
+        <label>
+          Street Number:
+          <input type="text" value={address.street_Number} onChange={e => setAddress({...address, street_Number: e.target.value})} />
+        </label>
+        <label>
+          Street Name:
+          <input type="text" value={address.street_Name} onChange={e => setAddress({...address, street_Name: e.target.value})} />
+        </label>
+        <label>
+          City:
+          <input type="text" value={address.city} onChange={e => setAddress({...address, city: e.target.value})} />
+        </label>
+        <label>
+          State:
+          <input type="text" value={address.state} onChange={e => setAddress({...address, state: e.target.value})} />
+        </label>
+        <label>
+          Zip:
+          <input type="text" value={address.zip} onChange={e => setAddress({...address, zip: e.target.value})} />
+        </label>
+        <label>
+          Account Type:
+          <input type="text" value={accountType} onChange={e => setAccountType(e.target.value)} />
+        </label>
+        <label>
+          Nickname:
+          <input type="text" value={nickname} onChange={e => setNickname(e.target.value)} />
+        </label>
+        
+        <button type="submit">Meet the future of banking</button>
       </form>
     </div>
   );

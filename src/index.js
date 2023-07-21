@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Routes, Link, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SigninSignUp from './pages/signin-signup';
-import CreateCustomer from './pages/createcustomer';
-import CreateAccount from './pages/createaccount';
+import BecomeACustomer from './pages/createcustomer';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+let container = document.getElementById('root');
+let root = ReactDOM.createRoot(container);
 
 root.render(
-
-    
-    <React.StrictMode>
+  <React.StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<SigninSignUp />} />
-        <Route path="/createcustomer" element={<CreateCustomer />} />
+        <Route path="/createaccount" element={<BecomeACustomer />} />
         <Route path="/accountinfo" element={<App />}/>
-        <Route path="/createaccount" element={<CreateAccount />} />
-        {/* Add more routes as needed */}
-
       </Routes>
     </Router>
   </React.StrictMode>
-
-
 );
 
 // If you want to start measuring performance in your app, pass a function
