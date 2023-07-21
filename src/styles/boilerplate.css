@@ -1,0 +1,32 @@
+/* Import colors and typography if needed */
+/* @import "./colors";
+   @import "./typography"; */
+
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+ 
+  }
+  
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #ffffff; /* Replace with the desired background color */
+    font-family: Arial, sans-serif; /* Replace with the desired font family */
+    position: relative;
+  }
+  
+  .container {
+    max-width: 133rem !important;
+    margin: 0 auto !important;
+    padding: 0 2.5rem !important;
+  }
+  
+  /* Scrollbar Styles */
+  /* Firefox */
+ 
+  
