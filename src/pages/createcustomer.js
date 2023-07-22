@@ -51,8 +51,12 @@ const CreateCustomer = ({ setAccountId }) => {
   return (
     <div className='page'>
     <div class="container">
+
+      <div className='h1andpara'>
     <h1 className='H1'>Become a Gradient&trade; Customer</h1>
     <p className='paragraph'>Please fill out the form below to become a partner:</p>
+    </div>
+   
     <form onSubmit={handleSubmit}>
       <div class="row">
         <div class = "row g-3">
@@ -111,7 +115,7 @@ const CreateCustomer = ({ setAccountId }) => {
             <label for="nickname">Nickname</label>
           </div>
         </div>
-        <div class="col-2 mb-4">
+        <div class="col-2 mb-5">
           <div class="form-floating">
           <select class="form-select" id="accountType" value={accountType} onChange={e => setAccountType(e.target.value)}>
               <option selected>Account Type</option>
@@ -121,7 +125,7 @@ const CreateCustomer = ({ setAccountId }) => {
           </div>
         </div>
         </div>
-      </div>
+      </div> 
         <button type="submit" class="btn btn-primary mt-3">Meet the future of banking</button>
        
     </form>

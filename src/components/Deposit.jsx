@@ -6,7 +6,11 @@ const Deposit = ({ accountId }) => {
     const [medium, setMedium] = useState("");
     const [amount, setAmount] = useState(null);
     const [description, setDescription] = useState("");
-    
+    const [showDepositForm, setShowDepositForm] = useState(false);
+
+    const handleButtonClick = () => {
+      setShowDepositForm(!showDepositForm);
+    };
     const handleSubmit = async event => {
         event.preventDefault();
 
@@ -33,34 +37,48 @@ const Deposit = ({ accountId }) => {
         
       };
       return (
-        <form onSubmit={handleSubmit}>
+       <div>
+      <button type="button" className="moneybuttons btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#depositOffcanvas">
+        Deposit Money
+      </button>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="depositOffcanvas" aria-labelledby="depositOffcanvasLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="depositOffcanvasLabel">Deposit Money</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        <form className="row g-3" onSubmit={handleSubmit}>
+        <div className="col-12">
           <label>Type</label>
-          <select value={type} onChange={e => setType(e.target.value)}>
+          <select className="form-select" value={type} onChange={e => setType(e.target.value)}>
             <option value="">--Please choose an option--</option>
             <option value="DEPOSIT">DEPOSIT</option>
             <option value="SAVINGS">SAVINGS</option>
-            {/* More options as per your enum */}
           </select>
-{/* 
-          <label>Payee ID</label>
-          <input type="number" value={payeeId} onChange={e => setPayeeId(e.target.value)} /> */}
-
+        </div>
+        <div className="col-12">
           <label>Medium</label>
-          <select value={medium} onChange={e => setMedium(e.target.value)}>
+          <select className="form-select" value={medium} onChange={e => setMedium(e.target.value)}>
             <option value="">--Please choose an option--</option>
             <option value="BALANCE">BALANCE</option>
             <option value="REWARDS">REWARDS</option>
-            {/* More options as per your enum */}
           </select>
-
+        </div>
+        <div className="col-12">
           <label>Amount</label>
-          <input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
-
+          <input type="number" className="form-control" value={amount} onChange={e => setAmount(e.target.value)} />
+        </div>
+        <div className="col-12">
           <label>Description</label>
-          <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
-          
-          <button type="submit">Create Deposit</button>
-        </form>
+          <input type="text" className="form-control" value={description} onChange={e => setDescription(e.target.value)} />
+        </div>
+        <div className="col-12">
+          <button type="submit" className="btn btn-primary">Create Deposit</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </div>
       );
       
 }
