@@ -1,0 +1,38 @@
+.welcome {
+    text-align: center;
+    font-family: 'M PLUS Code Latin', sans-serif;
+}
+
+.whole-page {
+    background-color: #000f24;
+    background-size: cover;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.btn{
+    color: #000f24;
+    background-color: #17d7f2;
+}
+
+.btn:hover {
+    background-color: #e824a2;
+  }
+
+.welcomeh1 {
+    color: #e824a2;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+}
+
+h2 {
+    color: #17d7f2;
+    margin-bottom: 6rem;
+}
+
+.butt{
+    color: black;
+    font-weight: bold;
+}

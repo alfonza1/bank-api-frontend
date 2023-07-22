@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 h1 {
     font-family: 'M PLUS Code Latin', sans-serif;
     color: #e824a2;
@@ -44,3 +45,41 @@ p {
   .form-container {
     width: 100px;
   }
+=======
+.H1{
+    font-family: 'M PLUS Code Latin', sans-serif;
+font-size: 3rem;  
+color: #e824a2;
+
+}
+.page {
+    background-color: #000f24;
+    background-size: cover;
+    height: 100vh;
+ 
+}
+
+.paragraph{
+
+color: white;
+
+}
+
+.form-control{
+
+margin-bottom: 1rem;
+
+}
+
+.h1andpara{
+position: relative;
+margin-bottom: 7rem;
+top: 5rem;
+
+}
+
+.moneybuttons{
+
+    margin-bottom: 3rem;
+}
+>>>>>>> main
