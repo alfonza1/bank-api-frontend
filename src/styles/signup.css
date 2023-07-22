@@ -1,6 +1,5 @@
 .welcome {
     text-align: center;
-    margin-top: -21.5px;
     font-family: 'M PLUS Code Latin', sans-serif;
 }
 
@@ -22,10 +21,18 @@
     background-color: #e824a2;
   }
 
-h1 {
+.welcomeh1 {
     color: #e824a2;
+    font-size: 5rem;
+    margin-bottom: 3rem;
 }
 
 h2 {
     color: #17d7f2;
+    margin-bottom: 6rem;
+}
+
+.butt{
+    color: black;
+    font-weight: bold;
 }
