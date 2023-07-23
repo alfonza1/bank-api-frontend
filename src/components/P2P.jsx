@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
 
 function P2P() {
   const [account, setAccount] = useState(null);
