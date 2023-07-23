@@ -61,7 +61,7 @@ const Withdrawal = ({ accountId }) => {
           </div>
 
           <div class="col-12">
-            <label>Payer ID</label>
+            <label>Account ID</label>
             <input class="form-control" type="number" value={payerId} onChange={e => setPayerId(e.target.value)} />
           </div>
 

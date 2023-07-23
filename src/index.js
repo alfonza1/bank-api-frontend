@@ -25,7 +25,7 @@ root.render(
       <Routes>
         <Route path="/" element={<SigninSignUp />} />
         <Route path="/createaccount" element={<BecomeACustomer />} />
-        <Route path="/accountinfo" element={<AccountInfo />}/>
+        <Route path="/accountinfo/:accountId" element = {<AccountInfo />}/>
       </Routes>
     </Router>
   </React.StrictMode>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "../styles/createcustomer.css"
 import "../styles/boilerplate.css"
+import { useNavigate } from 'react-router-dom';
 
 const CreateCustomer = ({ setAccountId }) => {
   const [first_Name, setFirstName] = useState('');
@@ -15,6 +16,7 @@ const CreateCustomer = ({ setAccountId }) => {
   });
   const [accountType, setAccountType] = useState('');
   const [nickname, setNickname] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -25,20 +27,31 @@ const CreateCustomer = ({ setAccountId }) => {
       address: [address]
     };
   
+
+
     try {
       const customerResponse = await axios.post('http://localhost:8080/customers', customerData);
-  
+
       if (customerResponse.data && customerResponse.data.data && customerResponse.data.data.id) {
         const customerId = customerResponse.data.data.id;
-  
+
         const accountData = {
           type: accountType,
           nickname,
           rewards: 0,
-          balance: 0
+          balance: 0,
         };
-  
-        await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
+
+        const accountResponse = await axios.post(`http://localhost:8080/customers/${customerId}/accounts`, accountData);
+
+        if (accountResponse.data && accountResponse.data.data && accountResponse.data.data.id) {
+          const accountId = accountResponse.data.data.id;
+
+          // Redirect to the AccountInfo component with the newly created account ID
+          navigate(`/accountinfo/${accountId}`);
+        } else {
+          console.error('Failed to get account ID');
+        }
       } else {
         console.error('Failed to get customer ID');
       }
