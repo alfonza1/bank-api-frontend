@@ -41,7 +41,7 @@ const Withdrawal = ({ accountId }) => {
       return (
       <div>
       <button type="button" className="moneybuttons btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#withdrawalOffcanvas">
-        Withdrawal Money
+        Withdraw Money
       </button>
       <div class="offcanvas offcanvas-start" tabindex="-1" id="withdrawalOffcanvas" aria-labelledby="withdrawalOffcanvasLabel">
     <div class="offcanvas-header">
@@ -56,6 +56,7 @@ const Withdrawal = ({ accountId }) => {
             <select class="form-select" value={type} onChange={e => setType(e.target.value)}>
               <option value="">--Please choose an option--</option>
               <option value="WITHDRAWAL">CHECKINGS</option>
+              <option value="WITHDRAWAL">SAVINGS</option>
               {/* More options as per your enum */}
             </select>
           </div>
@@ -85,7 +86,7 @@ const Withdrawal = ({ accountId }) => {
             <input class="form-control" type="text" value={description} onChange={e => setDescription(e.target.value)} />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">Withdrawal Money</button>
+        <button type="submit" className="btn btn-primary">Withdraw Money</button>
       </form>
     </div>
   </div>

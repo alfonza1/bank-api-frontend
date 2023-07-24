@@ -56,6 +56,7 @@ const AccountInfo = () => {
                 <th scope="col">Date</th>
                 <th scope="col">Status</th>
                 <th scope="col">Payer ID</th>
+                {/* <th scope="col">Payee ID</th> */}
                 <th scope="col">Medium</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Description</th>
@@ -74,9 +75,9 @@ const AccountInfo = () => {
                   <td>{withdrawal.description}</td>
                 </tr>
               ))}
-
+{/* transactions.deposits &&  */}
               {/* Map functions for deposits */}
-              {transactions.deposits && transactions.deposits.map(deposit => (
+              {transactions.deposits.map(deposit => (
                 <tr key={deposit.id}>
                   <td>{deposit.id}</td>
                   <td>{deposit.type}</td>
@@ -88,9 +89,9 @@ const AccountInfo = () => {
                   <td>{deposit.description}</td>
                 </tr>
               ))}
-
+{/* transactions.transfers &&  */}
               {/* Map functions for transfers */}
-              {transactions.transfers && transactions.transfers.map(transfer => (
+              {transactions.transfers.map(transfer => (
                 <tr key={transfer.id}>
                   <td>{transfer.id}</td>
                   <td>{transfer.type}</td>
