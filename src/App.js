@@ -3,38 +3,13 @@ import axios from 'axios';
 import Deposit from './components/Deposit';
 import Withdrawal from './components/Withdrawal';
 import P2P from './P2P';
-<<<<<<< HEAD
-import { useLocation } from 'react-router';
-
-=======
 import "./styles/accountinfo.css"
->>>>>>> main
 
 function App() {
-  const location = useLocation();
   const [account, setAccount] = useState(null);
   const [transactions, setTransactions] = useState(null);
 
   useEffect(() => {
-<<<<<<< HEAD
-    // Check if there is account data in the location state (set by CreateCustomer)
-    if (location.state && location.state.accountData) {
-      setAccount(location.state.accountData);
-    } else {
-      // If there is no account data, fetch the account with ID 3 (existing behavior)
-      const fetchAccountData = async () => {
-        try {
-          const response = await axios.get('http://localhost:8080/accounts/3');
-          setAccount(response.data.data);
-        } catch (error) {
-          console.error('Failed to fetch account data', error);
-        }
-      };
-
-      fetchAccountData();
-    }
-  }, [location.state]);
-=======
     const fetchAccountData = async () => {
       try {
         const accountResponse = await axios.get(`http://localhost:8080/accounts/1`);
@@ -49,7 +24,6 @@ function App() {
 
     fetchAccountData();
   }, []);
->>>>>>> main
 
   if (!account) {
     return <div className="App">ERROR.No Account found.</div>;
