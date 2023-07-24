@@ -12,8 +12,9 @@ import {
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SigninSignUp from './pages/signin-signup';
-import CreateCustomer from './pages/createcustomer';
+import SigninSignUp from './pages/hero-page';
+import BecomeACustomer from './pages/createcustomer';
+import AccountInfo from './pages/AccountInfo';
 
 let container = document.getElementById('root');
 let root = ReactDOM.createRoot(container);
@@ -23,8 +24,8 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<SigninSignUp />} />
-        <Route path="/createaccount" element={<CreateCustomer />} />
-        <Route path="/accountinfo" element={<App />}/>
+        <Route path="/createaccount" element={<BecomeACustomer />} />
+        <Route path="/accountinfo/:accountId" element = {<AccountInfo />}/>
       </Routes>
     </Router>
   </React.StrictMode>
